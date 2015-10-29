@@ -1,11 +1,8 @@
+/Main/
 /ca/
 /dataPreprocessing/
 /getAttribute/
-/json-simple-1.1.1.jar
-/module/
-/transferToSDB/
-/Main/
-/RuleGeneration/
 /json-simple-1.1.1.jar.jar
 /ruleGeneration/
 /ruleMapping/
+/transferToSDB/

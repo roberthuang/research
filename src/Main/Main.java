@@ -14,12 +14,14 @@ import ca.pfv.spmf.input.sequence_database_list_strings.SequenceDatabase;
 
 public class Main {
     public static void main(String[] args) {
+    	
 	    /**1.SAX(應該要先只針對Training data,需要改)**/
     	System.out.println("##Step1: SAX");
         SAXTransformation sax = new SAXTransformation();
         sax.start("SAXTransformation_config_petro_subset1.txt");
         
         try {
+        	
             String path = "petro_subset1.csv";//For Get Attribute
             
             //System.out.print("Reading \"" + path + "\"...\n");
@@ -56,17 +58,19 @@ public class Main {
     		algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
     		algo.printStatistics(sequenceDatabase.size());
     		
+    		
     		/**5.Rule Generation**/
+    		
     		System.out.println("##Step5: Rule Generation");
     		RuleEvaluation rule = new RuleEvaluation();
-    		rule.start("RuleEvaluation_config.txt"); 
+    		rule.start("RuleEvaluation_config.txt");
+    		
     		
     		/**6.Rule Mapping**/
+    		System.out.println("##Step6: Rule Mapping");
     		RuleMapping mapping = new RuleMapping();
     		mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
-    		
-    		
-            
+    		 
         } catch (FileNotFoundException e) {
             System.out.println("[ERROR] File Not Found Exception.");
             e.printStackTrace();
@@ -117,13 +121,13 @@ public class Main {
             result.put(index, itemsets);
             index = index + 1;
         }     
-        /*	 
+        /*
         //debug
         for (Integer i : result.keySet()) {
-	    System.out.println(i + " " + result.get(i));
+	        System.out.println(i + " " + result.get(i));
+	    
+	    }*/
 	
-	}
-	*/	
         sc.close();
         return result;
         
@@ -173,11 +177,9 @@ public class Main {
 		}
 		*/
 		sc.close();
-		return result;
-		
+		return result;	
     }
   
-    
 }
 
 

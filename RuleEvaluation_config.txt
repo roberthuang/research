@@ -1,0 +1,11 @@
+{
+	"path"		:	"C:\\user\\workspace\\research\\sequential_patterns.txt",
+	"output"	:	"C:\\user\\workspace\\research\\rules.txt",
+	"min_conf"	:	0.588,
+	"contains_event"	:
+	[
+	   "Rise",
+	   "Down"
+	    	
+	]
+}
