@@ -153,8 +153,8 @@ public class SAXTransformation {
 			
 			//5. Transform each attribute (whose flag = 1) into category attribute by SAX
 			
-			int traing_data = (int)(records.size()*0.8);
-			for(int r=1;r<records.size();r++){
+			int traing_data = (int)((records.size()-1)*0.8);
+			for(int r=1;r<=traing_data;r++){
 				ArrayList<String> curRecord = records.get(r);
 				for(int c=0;c<Num_Attrs;c++){
 					if(!attrSettings.containsKey(attrs.get(c))) continue;

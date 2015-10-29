@@ -165,9 +165,8 @@ public class RuleEvaluation {
 
 	static HashMap<String, Double> readPatterns(String filename) throws FileNotFoundException{
 
-	        //traing_data
-
-	        double traing_data = 657;
+	        //traing_data_size
+	        double traing_data = 656;
 
 	        
 
