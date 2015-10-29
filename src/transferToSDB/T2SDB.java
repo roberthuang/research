@@ -12,7 +12,7 @@ public class T2SDB {
            System.out.print("Transfer to SDB(Training): Reading \"" + path + "\"...");
            ArrayList<ArrayList<String>> records = readCSV(path);
            
-           int training_data = (int)(records.size()*0.8);
+           int training_data = (int)((records.size() - 1)*0.8);
            //The source cloumn
            int col = 2;
            
@@ -55,7 +55,7 @@ public class T2SDB {
            e.printStackTrace();
        }       
    } 
-   
+   /*
    public void translate_testing(int window_size, String path) {
        try {
            System.out.print("Transfer to SDB(Testing): Reading \"" + path + "\"...");
@@ -95,7 +95,7 @@ public class T2SDB {
            e.printStackTrace();
        }       
    } 
- 
+   */
    static ArrayList<ArrayList<String>> readCSV(String fullpath) throws FileNotFoundException{
        ArrayList<ArrayList<String>> records = new ArrayList<>();
 	File inputFile = new File(fullpath);
@@ -112,5 +112,6 @@ public class T2SDB {
 		
 	return records; 
    }
+   
    
 }

@@ -95,7 +95,7 @@ public class RuleEvaluation {
 
 	static void mainflow(String jsconfig) {
 
-		System.out.println(">> START: RuleEvaluation");
+		System.out.println("===============  RuleEvaluation ===================");
 
 		JSONParser parser = new JSONParser();
 
@@ -157,7 +157,7 @@ public class RuleEvaluation {
 
 		}
 
-		System.out.println(">> DONE: RuleEvaluation");
+		System.out.println("===================================================\n");
 
 	}
 

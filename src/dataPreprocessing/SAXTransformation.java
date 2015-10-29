@@ -57,7 +57,7 @@ public class SAXTransformation {
 	}
 	
 	static void mainflow(String jsconfig) {
-		System.out.println(">> START: SAXTransformation");
+		System.out.println("=============  SAXTransformation ==================");
 		//Initialize BREAKPOINT_TABLE (Make each category has same probability in normal distribution)
 		initialize();
 		
@@ -152,6 +152,8 @@ public class SAXTransformation {
 			System.out.print("Transforming...");
 			
 			//5. Transform each attribute (whose flag = 1) into category attribute by SAX
+			
+			int traing_data = (int)(records.size()*0.8);
 			for(int r=1;r<records.size();r++){
 				ArrayList<String> curRecord = records.get(r);
 				for(int c=0;c<Num_Attrs;c++){
@@ -187,7 +189,7 @@ public class SAXTransformation {
 			System.out.println("[ERROR] I/O Exception.");
 			e.printStackTrace();
 		}
-		System.out.println(">> DONE: SAXTransformation");
+		System.out.println("===================================================\n");
 	}
 	
 	static void initialize(){
