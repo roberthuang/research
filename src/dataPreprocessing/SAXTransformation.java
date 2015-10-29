@@ -57,7 +57,7 @@ public class SAXTransformation {
 	}
 	
 	static void mainflow(String jsconfig) {
-		System.out.println("=============  SAXTransformation ==================");
+		System.out.println("==========SAXTransformation(Training)=============");
 		//Initialize BREAKPOINT_TABLE (Make each category has same probability in normal distribution)
 		initialize();
 		

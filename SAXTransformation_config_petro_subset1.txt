@@ -1,6 +1,6 @@
 {
 	"path"		:	"petro_subset1.csv",
-	"output"	:	"C:\\user\\workspace\\research\\transformed_petro_subset1.csv",
+	"output"	:	"C:\\user\\workspace\\research\\transformed_petro_subset1_training.csv",
 	"test_setting"	:	"C:\\user\\workspace\\research\\petro_subset1_breakpoints.txt",
 	"attrs"		:
 	[

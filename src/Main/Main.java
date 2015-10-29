@@ -14,30 +14,27 @@ import ca.pfv.spmf.input.sequence_database_list_strings.SequenceDatabase;
 
 public class Main {
     public static void main(String[] args) {
-    	
-	    /**1.SAX(應該要先只針對Training data,需要改)**/
-    	System.out.println("##Step1: SAX");
-        SAXTransformation sax = new SAXTransformation();
-        sax.start("SAXTransformation_config_petro_subset1.txt");
+    	try {
+	        /**1.SAX(Traing)**/
+    	    System.out.println("##Step1: SAX(Traing)");
+            SAXTransformation sax = new SAXTransformation();
+            sax.start("SAXTransformation_config_petro_subset1.txt");
         
-        try {
-        	
-            String path = "petro_subset1.csv";//For Get Attribute
-            
-            //System.out.print("Reading \"" + path + "\"...\n");
-            ArrayList<ArrayList<String>> records = readCSV(path);
-      
-            int window_size = 12;
-            String path_of_file_after_SAX = "transformed_petro_subset1.csv";
             /**2.Get Attribute**/ 
-            System.out.println("##Step2: GetAttribute");
+        	System.out.println("##Step2: GetAttribute");
+            String path = "petro_subset1.csv";//For Get Attribute 
+            ArrayList<ArrayList<String>> records = readCSV(path);
             GetAttr g = new GetAttr();
             HashMap<Integer, String> class_table = g.Move_Average(3, records);    
         
             /**3.Temporal Data Base to SDB(Training)**/
             System.out.println("##Step3: Temporal Data Base to SDB(Training)");
+            int window_size = 12;
+            //For training
+            String path_of_file_after_SAX = "transformed_petro_subset1_training.csv";      
             T2SDB t = new T2SDB();
             t.translate_training(window_size, path_of_file_after_SAX,  class_table);
+            
             
             //Temporal Data Base to SDB(Testing)
             //t.translate_testing(window_size, path_of_file_after_SAX);
