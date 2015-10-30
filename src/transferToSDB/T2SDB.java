@@ -9,7 +9,7 @@ public class T2SDB {
      */
     public void translate_training(int window_size, String path, HashMap<Integer, String> class_table) {
        try {
-           System.out.print("Transfer to SDB(Training): Reading \"" + path + "\"...");
+           System.out.print("=============Transfer to SDB(Training)=============\n");
            ArrayList<ArrayList<String>> records = readCSV(path);
            
            int training_data = (int)((records.size() - 1)*0.8);
@@ -45,38 +45,39 @@ public class T2SDB {
            }
            osw.close(); 
          
-           System.out.println("done.");
+          
            
        } catch (FileNotFoundException e) {
-	    System.out.println("[ERROR] File Not Found Exception.");
+	       System.out.println("[ERROR] File Not Found Exception.");
 	    e.printStackTrace();
-	} catch (IOException e) {
+	   } catch (IOException e) {
            System.out.println("[ERROR] I/O Exception.");
            e.printStackTrace();
-       }       
+       }  
+       
+       System.out.println("===================================================\n");
    } 
-   /*
+   
    public void translate_testing(int window_size, String path) {
        try {
-           System.out.print("Transfer to SDB(Testing): Reading \"" + path + "\"...");
+    	   System.out.print("=============Transfer to SDB(Testing)=============\n");
            ArrayList<ArrayList<String>> records = readCSV(path);
            
            //The source cloumn
            int col = 2;
            
-           int training_data = (int)(records.size()*0.8);
-           //Testing data size  
-           int testing_data = 821;
+           int training_data = (int)((records.size()-1)*0.8);
+       
            
            //output
            File fout = new File("SDB(Testing).txt");
 	       FileOutputStream fos = new FileOutputStream(fout);
 	       OutputStreamWriter osw = new OutputStreamWriter(fos);           
            
-           for (int i = training_data + 1; i <= testing_data; i++) {                                   
+           for (int i = training_data + 1; i < records.size(); i++) {                                   
                for (int j = 0; j < window_size;j++) {
                    int index = i + j;                     
-                   if (index <= testing_data) {                                                   
+                   if (index < records.size()) {                                                   
                        osw.write(records.get(index).get(col) + " "+ -1 + " ");     
                    }                    
                }        
@@ -84,18 +85,18 @@ public class T2SDB {
                osw.write("\r\n");
            }
            osw.close(); 
-         
-           System.out.println("done.");
            
        } catch (FileNotFoundException e) {
-	    System.out.println("[ERROR] File Not Found Exception.");
-	    e.printStackTrace();
-	} catch (IOException e) {
+	       System.out.println("[ERROR] File Not Found Exception.");
+	       e.printStackTrace();
+	   } catch (IOException e) {
            System.out.println("[ERROR] I/O Exception.");
            e.printStackTrace();
-       }       
+       }  
+
+       System.out.println("===================================================\n");
    } 
-   */
+   
    static ArrayList<ArrayList<String>> readCSV(String fullpath) throws FileNotFoundException{
        ArrayList<ArrayList<String>> records = new ArrayList<>();
 	File inputFile = new File(fullpath);

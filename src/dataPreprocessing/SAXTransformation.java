@@ -177,7 +177,7 @@ public class SAXTransformation {
 			}
 			
 			System.out.println("done.");
-			System.out.print("Writing to output file \"" + output_filename + "\" ...");
+			System.out.print("Writing to output file (" + output_filename + ") ...");
 			
 			//6. Write records into output file
 			writeCSV("", output_filename, records);
@@ -258,13 +258,17 @@ public class SAXTransformation {
 		outputFW.close();
 	}
 	
+	//Modify for testing data
 	static void writeTestingSettings(String filename, ArrayList<String> attrs, HashMap<String, AttributeSetting> attrSettings, double[][] breakpoint_values){
 		//The output file for testing settings is in json format
 		File outputfile = new File(filename);
 		if(!outputfile.getParentFile().exists()) outputfile.getParentFile().mkdirs();
 		try {
 			FileWriter fw = new FileWriter(outputfile);
-			fw.write("{\r\n\t\"attrs\"\t:\r\n\t[");
+			fw.write("{\r\n\t\"path\"\t\t:\t\"petro_subset1.csv\",");
+			fw.write("\r\n\t\"output\"\t:\t\"C:\\user\\workspace\\research\\transformed_petro_subset1_testing.csv\",");
+			fw.write("\r\n\t\"test_setting\"\t:\t\"petro_subset1_breakpoints.txt\",");
+			fw.write("\r\n\t\"attrs\"\t:\r\n\t[");
 			boolean first = true;
 			for(int i=0;i<attrs.size();i++){
 				if(!attrSettings.containsKey(attrs.get(i))) continue;

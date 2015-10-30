@@ -74,7 +74,7 @@ public class RuleMapping {
                 }
                 
             } 
-            //System.out.println(number);
+            //System.out.println(match_number);
             
             if (match_number >=2) {
                 int max = 0;
@@ -110,8 +110,8 @@ public class RuleMapping {
         for (ArrayList<ArrayList<String>> key : result.keySet()) {
             System.out.println(key + " " + result.get(key));
         		
-        }
-        System.out.println(result.size());*/
+        }*/
+        //System.out.println("Testing Data 's Window Size: " + result.size());
         return result;         	 	
     
     }
