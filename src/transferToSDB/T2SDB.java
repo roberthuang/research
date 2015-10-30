@@ -77,12 +77,14 @@ public class T2SDB {
            for (int i = training_data + 1; i < records.size(); i++) {                                   
                for (int j = 0; j < window_size;j++) {
                    int index = i + j;                     
-                   if (index < records.size()) {                                                   
+                   if (index < records.size()) {                          
+                	   System.out.println(index);
                        osw.write(records.get(index).get(col) + " "+ -1 + " ");     
                    }                    
                }        
                osw.write(""+-2);
                osw.write("\r\n");
+             
            }
            osw.close(); 
            
