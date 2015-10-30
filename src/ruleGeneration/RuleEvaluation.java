@@ -85,15 +85,15 @@ public class RuleEvaluation {
 	}
 
 
-	public static void start(String jsconfig) {
+	public static void start(String jsconfig, double min_conf_input) {
 
-		mainflow(jsconfig);
+		mainflow(jsconfig, min_conf_input);
 
 	}
 
 	
 
-	static void mainflow(String jsconfig) {
+	static void mainflow(String jsconfig, double min_conf_input) {
 
 		System.out.println("===============  RuleEvaluation ===================");
 
@@ -111,7 +111,8 @@ public class RuleEvaluation {
 
 			output_filename = jsobj.get("output").toString();
 
-			min_conf = Double.parseDouble(jsobj.get("min_conf").toString());
+			//min_conf = Double.parseDouble(jsobj.get("min_conf").toString());
+			min_conf = min_conf_input;
 
 			JSONArray js_events = (JSONArray) jsobj.get("contains_event");
 

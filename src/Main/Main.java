@@ -15,6 +15,14 @@ import ca.pfv.spmf.input.sequence_database_list_strings.SequenceDatabase;
 public class Main {
     public static void main(String[] args) {
     	try {
+    		/**0.Set Argument**/
+    		int period_for_moving_average  = 3;//step 2
+    		int window_size = 12;//step 3
+    		int minsup = 100; //step 4
+    		double min_conf = 0.59;// step 5
+    		
+    		
+    		
 	        /**1.SAX(Traing)**/
     	    System.out.println("##Step1: SAX(Traing)");
             SAXTransformation sax = new SAXTransformation();
@@ -25,11 +33,10 @@ public class Main {
             String path = "petro_subset1.csv";//For Get Attribute 
             ArrayList<ArrayList<String>> records = readCSV(path);
             GetAttr g = new GetAttr();
-            HashMap<Integer, String> class_table = g.Move_Average(3, records);    
+            HashMap<Integer, String> class_table = g.Move_Average(period_for_moving_average, records);    
         
             /**3.Temporal Data Base to SDB(Training)**/
             System.out.println("##Step3: Temporal Data Base to SDB(Training)");
-            int window_size = 12;
             //For training
             String path_of_file_after_SAX = "transformed_petro_subset1_training.csv";      
             T2SDB t = new T2SDB();
@@ -50,17 +57,15 @@ public class Main {
     		
     		// Create an instance of the algorithm with minsup = 50 %
     		AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
-    		int minsup = 100; 
     		// execute the algorithm
     		algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
     		algo.printStatistics(sequenceDatabase.size());
     		
     		
     		/**5.Rule Generation**/
-    		
     		System.out.println("##Step5: Rule Generation");
     		RuleEvaluation rule = new RuleEvaluation();
-    		rule.start("RuleEvaluation_config.txt");
+    		rule.start("RuleEvaluation_config.txt", min_conf);
     		
     		
     		/**6.Rule Mapping**/

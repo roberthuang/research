@@ -9,7 +9,9 @@ public class GetAttr {
      *
      */
     public static HashMap<Integer, String> Move_Average(int length, ArrayList<ArrayList<String>> records) {
-    
+        System.out.printf("================Moving Average(%d)==================\n",length);
+    	
+    	
         HashMap<Integer, String> result = new HashMap<>(); 
         int training_data = (int)(records.size()*0.8);  
         //The column of Target
@@ -52,7 +54,8 @@ public class GetAttr {
                 result.put(i, "Down"); 
             }              
         }        
-                           
+        System.out.println("===================================================\n");  
+      
         return result;
     }
 
