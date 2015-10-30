@@ -52,9 +52,7 @@ public class Main {
             //For testing
             String path_of_testing_file_after_SAX = "transformed_petro_subset1_testing.csv";
             t.translate_testing(window_size, path_of_testing_file_after_SAX);
-            
-            
-            
+             
             
             /**4.Sequential Pattern Mining**/
             System.out.println("##Step4: Sequential Pattern Mining(Training)");
@@ -81,6 +79,11 @@ public class Main {
     		RuleMapping mapping = new RuleMapping();
     		HashMap<Integer, ArrayList<String>> result_of_predict_for_testing_data 
     		= mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
+    		
+    		
+    		/**7.Evaluate Precision**/
+    		
+    		
     		 
         } catch (FileNotFoundException e) {
             System.out.println("[ERROR] File Not Found Exception.");
