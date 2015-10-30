@@ -77,9 +77,10 @@ public class Main {
             
     		
     		/**6.Rule Mapping**/
-    		//System.out.println("##Step6: Rule Mapping");
-    		//RuleMapping mapping = new RuleMapping();
-    		//mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
+    		System.out.println("##Step6: Rule Mapping");
+    		RuleMapping mapping = new RuleMapping();
+    		HashMap<Integer, ArrayList<String>> result_of_predict_for_testing_data 
+    		= mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
     		 
         } catch (FileNotFoundException e) {
             System.out.println("[ERROR] File Not Found Exception.");
@@ -131,13 +132,14 @@ public class Main {
             result.put(index, itemsets);
             index = index + 1;
         }     
+        
         /*
         //debug
         for (Integer i : result.keySet()) {
 	        System.out.println(i + " " + result.get(i));
 	    
-	    }*/
-	
+	    }
+        System.out.println(result.size());*/
         sc.close();
         return result;
         

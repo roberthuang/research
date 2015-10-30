@@ -5,7 +5,8 @@ import java.util.*;
 
 public class RuleMapping {
 	
-    public HashMap<ArrayList<ArrayList<String>>, ArrayList<String>>  RuleMapping(HashMap<ArrayList<ArrayList<String>>, ArrayList<Double>> rules, HashMap<Integer, ArrayList<ArrayList<String>>> SDB_for_testing) {
+    public HashMap<Integer, ArrayList<String>>  RuleMapping(HashMap<ArrayList<ArrayList<String>>, ArrayList<Double>> rules,
+    HashMap<Integer, ArrayList<ArrayList<String>>> SDB_for_testing) {
         //1.We evaluate the number of Rise and Down in rules.
         HashMap<String, Integer> number_of_rise_down = new HashMap<>();
         for (ArrayList<ArrayList<String>> rule : rules.keySet()) {
@@ -37,17 +38,18 @@ public class RuleMapping {
         
     	 	
     	//2.Begin Mapping 
-        HashMap<ArrayList<ArrayList<String>>, ArrayList<String>> result = new HashMap<>();
-        ArrayList<ArrayList<ArrayList<String>>> match_rules = new  ArrayList<>();
+        HashMap<Integer, ArrayList<String>> result = new HashMap<>();
+
        
-        for (Integer i :  SDB_for_testing.keySet()) {
+        for (Integer i : SDB_for_testing.keySet()) {
             //Match rule's number
             int match_number = 0;
+            ArrayList<ArrayList<ArrayList<String>>> match_rules = new  ArrayList<>();
             
             //The sequence in SDB_Testing
             ArrayList<ArrayList<String>> itemsets = SDB_for_testing.get(i);
             
-            HashMap<Integer, ArrayList<ArrayList<String>>> map = new HashMap<>();
+            
             //For choose rule when mapping to the many rule
             HashMap<Integer, ArrayList<ArrayList<String>>> compare = new HashMap<>();
        
@@ -72,7 +74,7 @@ public class RuleMapping {
                 	match_number = match_number + 1;      
                 	match_rules.add(rule);
                 }
-                
+               
             } 
             //System.out.println(match_number);
             
@@ -95,23 +97,28 @@ public class RuleMapping {
             	
                 ArrayList<ArrayList<String>> match_rule = match_rules.get(max);
                 ArrayList<String> Rise_Down = match_rule.get(match_rule.size()-1);
-            	result.put(itemsets, Rise_Down);
+            	result.put(i, Rise_Down);
+            	
             } else if (0< match_number && match_number < 2){
             	//Only one match_rule
             	ArrayList<ArrayList<String>> match_rule = match_rules.get(0);
             	ArrayList<String> Rise_Down = match_rule.get(match_rule.size()-1);
-            	result.put(itemsets,Rise_Down);
+            	result.put(i,Rise_Down);
+            	
             } else {
-            	result.put(itemsets,answer);
+            	result.put(i,answer);
+            	
             }
+            //Debug
+            //System.out.println(i);
         }    
         /*
-        //debug
+        //Debug
         for (ArrayList<ArrayList<String>> key : result.keySet()) {
             System.out.println(key + " " + result.get(key));
         		
         }*/
-        //System.out.println("Testing Data 's Window Size: " + result.size());
+        //System.out.println(result.size());
         return result;         	 	
     
     }

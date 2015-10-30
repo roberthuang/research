@@ -1,0 +1,16 @@
+{
+	"path"		:	"petro_subset1.csv",
+	"output"	:	"C:\user\workspace\research\transformed_petro_subset1_testing.csv",
+	"test_setting"	:	"petro_subset1_breakpoints.txt",
+	"attrs"	:
+	[
+		{
+			"attr_name"	:	"SMR_20_US",
+			"breakpoints"	:
+			[
+				144.8534263861485,
+				240.08506326062394
+			]
+		}
+	]
+}
