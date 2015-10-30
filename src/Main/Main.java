@@ -16,25 +16,23 @@ public class Main {
     public static void main(String[] args) {
     	try {
     		/**0.Set Argument**/
-    		int period_for_moving_average  = 3;//step 2
-    		int window_size = 12;//step 3
-    		int minsup = 100; //step 4
-    		double min_conf = 0.59;// step 5
-    		
-    		
+    		int period_for_moving_average  = 3;
+    		int window_size = 12;//Temporal Data Base to SDB(Training)
+    		int minsup = 50; 
+    		double min_conf = 0.55;//Rule Generation
     		
 	        /**1.SAX(Traing)**/
     	    System.out.println("##Step1: SAX(Traing)");
             SAXTransformation sax = new SAXTransformation();
             sax.start("SAXTransformation_config_petro_subset1.txt");
-        
+            
             /**2.Get Attribute**/ 
         	System.out.println("##Step2: GetAttribute");
             String path = "petro_subset1.csv";//For Get Attribute 
             ArrayList<ArrayList<String>> records = readCSV(path);
             GetAttr g = new GetAttr();
             HashMap<Integer, String> class_table = g.Move_Average(period_for_moving_average, records);    
-        
+            
             /**3.Temporal Data Base to SDB(Training)**/
             System.out.println("##Step3: Temporal Data Base to SDB(Training)");
             //For training
@@ -55,7 +53,6 @@ public class Main {
             //print the database to console
             //sequenceDatabase.print();
     		
-    		// Create an instance of the algorithm with minsup = 50 %
     		AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
     		// execute the algorithm
     		algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
