@@ -57,23 +57,23 @@ public class Main {
             
             
             /**4.Sequential Pattern Mining**/
-            //System.out.println("##Step4: Sequential Pattern Mining(Training)");
+            System.out.println("##Step4: Sequential Pattern Mining(Training)");
             //Load a sequence database
-            //SequenceDatabase sequenceDatabase = new SequenceDatabase(); 
-            //sequenceDatabase.loadFile("C:\\user\\workspace\\research\\SDB(Training).txt");
+            SequenceDatabase sequenceDatabase = new SequenceDatabase(); 
+            sequenceDatabase.loadFile("C:\\user\\workspace\\research\\SDB(Training).txt");
             //print the database to console
             //sequenceDatabase.print();
     		
-    		//AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
+    		AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
     		//execute the algorithm
-    		//algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
-    		//algo.printStatistics(sequenceDatabase.size());
+    		algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
+    		algo.printStatistics(sequenceDatabase.size());
     		
     		
     		/**5.Rule Generation**/
-    		//System.out.println("##Step5: Rule Generation");
-    		//RuleEvaluation rule = new RuleEvaluation();
-    		//rule.start("RuleEvaluation_config.txt", min_conf);
+    		System.out.println("##Step5: Rule Generation");
+    		RuleEvaluation rule = new RuleEvaluation();
+    		rule.start("RuleEvaluation_config.txt", min_conf);
             
     		
     		/**6.Rule Mapping**/

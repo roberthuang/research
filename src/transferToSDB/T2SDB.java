@@ -28,7 +28,9 @@ public class T2SDB {
                    int index = i + j;                     
                    if (index <= training_data) {
                        class_index = index;                     
-                       osw.write(records.get(index).get(col) + " "+ -1 + " ");     
+                       osw.write(records.get(index).get(col) + " "+ -1 + " ");
+                       //Debug
+                       //osw.write(index + " "+ -1 + " ");
                    }                       
                }
                
@@ -45,7 +47,8 @@ public class T2SDB {
            }
            osw.close(); 
          
-          
+           System.out.println("Training Data's window number: " + training_data );
+           System.out.println("===================================================\n");   
            
        } catch (FileNotFoundException e) {
 	       System.out.println("[ERROR] File Not Found Exception.");
@@ -55,7 +58,6 @@ public class T2SDB {
            e.printStackTrace();
        }  
        
-       System.out.println("===================================================\n");
    } 
    
    public void translate_testing(int window_size, String path) {
@@ -78,8 +80,10 @@ public class T2SDB {
                for (int j = 0; j < window_size;j++) {
                    int index = i + j;                     
                    if (index < records.size()) {                          
-                	   System.out.println(index);
-                       osw.write(records.get(index).get(col) + " "+ -1 + " ");     
+                	   //System.out.println(index);
+                       osw.write(records.get(index).get(col) + " "+ -1 + " ");
+                       //Debug
+                	   //osw.write(index + " "+ -1 + " ");
                    }                    
                }        
                osw.write(""+-2);
@@ -87,7 +91,8 @@ public class T2SDB {
              
            }
            osw.close(); 
-           
+           System.out.println("Testing Data's window number: " + (records.size()- 1 - training_data) );
+           System.out.println("===================================================\n");   
        } catch (FileNotFoundException e) {
 	       System.out.println("[ERROR] File Not Found Exception.");
 	       e.printStackTrace();
@@ -96,7 +101,7 @@ public class T2SDB {
            e.printStackTrace();
        }  
 
-       System.out.println("===================================================\n");
+     
    } 
    
    static ArrayList<ArrayList<String>> readCSV(String fullpath) throws FileNotFoundException{
