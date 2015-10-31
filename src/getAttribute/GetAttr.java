@@ -57,6 +57,13 @@ public class GetAttr {
                 result.put(i, "Down"); 
             }              
         }  
+        /*
+        //Debug 
+        for (Integer i :result.keySet()) {
+        	System.out.println(i + " " + result.get(i));
+        	
+        	
+        }*/
         System.out.println("Moving avearge number :" + result.size());
         System.out.println("===================================================\n");  
       

@@ -123,4 +123,38 @@ public class RuleMapping {
     
     }
     
+    public void evaluate(HashMap<Integer, String> class_table , HashMap<Integer, ArrayList<String>> predict) {
+    	//Argument
+        int True_Positive  = 0;
+        int True_Negative  = 0;
+        int False_Positive = 0;
+        int False_Negative = 0;
+        int testing_data = 165;
+        int index = 656;
+        
+        for (int i = 1; i <= testing_data; i++) {
+            String rise_down = predict.get(i).get(0);
+            //True Positive
+            if (rise_down == "Rise") {
+            	 if (class_table.get(index+i) == "Rise") {
+            		 True_Positive =  True_Positive + 1;	 	 
+            	 } else {
+            		 False_Positive = False_Positive + 1; 
+            	 }
+            	 
+            } else  if (rise_down == "Down") {
+            	 if (class_table.get(index+i) == "Down") {
+            		 True_Negative =  True_Negative + 1;	 	 
+            	 } else {
+            		 False_Negative = False_Negative + 1; 
+            	 }     	
+            }	
+        }
+        double result = (True_Positive + True_Negative)/ (double)(True_Positive + True_Negative + False_Positive + False_Negative);
+      
+   
+    	System.out.println("Precision: " + result);
+    	
+    }
+    
 }

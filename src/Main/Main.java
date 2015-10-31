@@ -18,10 +18,10 @@ public class Main {
     	try {
     		
     		/**0.Set Argument**/
-    		int period_for_moving_average  = 3;
-    		int window_size = 12;//Temporal Data Base to SDB(Training)
-    		int minsup = 150; 
-    		double min_conf = 0.58;//Rule Generation
+    		int period_for_moving_average  = 5;
+    		int window_size = 15;//Temporal Data Base to SDB(Training)
+    		int minsup = 2; 
+    		double min_conf = 0.00000000000000001;//Rule Generation
     		
     		
 	        /**1.SAX**/
@@ -82,7 +82,7 @@ public class Main {
     		
     		
     		/**7.Evaluate Precision**/
-    		
+    		mapping.evaluate(class_table, result_of_predict_for_testing_data );
     		
     		 
         } catch (FileNotFoundException e) {

@@ -3,10 +3,10 @@ import java.io.*;
 import java.util.*;
 
 public class T2SDB {
-	/* Input: window_size, path(csv file which is symbolic by SAX), class_table(the target attribute's class)
+	/** Input: window_size, path(csv file which is symbolic by SAX), class_table(the target attribute's class)
      * Output: Sequential Data Base
      *
-     */
+    **/
     public void translate_training(int window_size, String path, HashMap<Integer, String> class_table) {
        try {
            System.out.print("=============Transfer to SDB(Training)=============\n");
