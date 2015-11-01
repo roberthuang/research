@@ -19,8 +19,8 @@ public class Main {
     		/**0.Set Argument**/
     		int period_for_moving_average  = 5;
     		int window_size = 12;//Temporal Data Base to SDB(Training)
-    		int minsup = 100;
-    		double min_conf = 0.59;
+    		int minsup = 20;
+    		double min_conf = 0.1;
     		
 	        /**1.SAX**/
     	    System.out.println("##Step1.1: SAX(Traing)");
