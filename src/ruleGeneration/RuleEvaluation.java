@@ -180,7 +180,7 @@ public class RuleEvaluation {
 			String[] tokens = sc.nextLine().split(" -1  #SUP: ");
 
 			double sup = Double.parseDouble(tokens[1])/traing_data;
-
+            
 				
 
 			patterns.put(tokens[0], sup);
@@ -260,7 +260,8 @@ public class RuleEvaluation {
 			if(!patterns.containsKey(LHS.toString())) System.out.println(LHS + "\t->\t" + RHS);
 
 			double conf = 1.0 * sup / patterns.get(LHS.toString());
-
+            
+			
 			if(conf >= min_conf) rules.put(rule, new RuleEval(sup, conf));
 
 		}
