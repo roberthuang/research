@@ -15,14 +15,12 @@ import ca.pfv.spmf.input.sequence_database_list_strings.SequenceDatabase;
 
 public class Main {
     public static void main(String[] args) {
-    	try {
-    		
+        try {		
     		/**0.Set Argument**/
     		int period_for_moving_average  = 5;
-    		int window_size = 15;//Temporal Data Base to SDB(Training)
-    		int minsup = 2; 
-    		double min_conf = 0.00000000000000001;//Rule Generation
-    		
+    		int window_size = 12;//Temporal Data Base to SDB(Training)
+    		int minsup = 100;
+    		double min_conf = 0.2;
     		
 	        /**1.SAX**/
     	    System.out.println("##Step1.1: SAX(Traing)");
@@ -81,6 +79,7 @@ public class Main {
     		= mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
     		
     		
+			
     		/**7.Evaluate Precision**/
     		mapping.evaluate(class_table, result_of_predict_for_testing_data );
     		
@@ -92,6 +91,8 @@ public class Main {
         	System.out.println("[ERROR] I/O Exception.");
             e.printStackTrace();  	
         } 
+    	
+    	
         
     }
     
