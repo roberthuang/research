@@ -123,6 +123,8 @@ public class RuleMapping {
     
     }
     
+    
+    
     public void evaluate(HashMap<Integer, String> class_table , HashMap<Integer, ArrayList<String>> predict) {
     	//Argument
         int True_Positive  = 0;
@@ -150,7 +152,7 @@ public class RuleMapping {
                 }
         }
         
-        double result = (True_Positive + True_Negative)/ (double)(True_Positive + True_Negative + False_Positive + False_Negative);
+        
         System.out.println("True_Positive: " + True_Positive);
         System.out.println("True_Negative: " + True_Negative);
         System.out.println("False_Positive: " + False_Positive);
@@ -166,6 +168,8 @@ public class RuleMapping {
         System.out.println("acc: " + acc);
         System.out.println("f_measure_rise: " + f_measure_rise);
     	System.out.println("f_measure_down: " + f_measure_down);
+    	System.out.println("precision_rise: " + precision_rise);
+    	System.out.println("precision_down: " +  precision_down);
     }
     
 }

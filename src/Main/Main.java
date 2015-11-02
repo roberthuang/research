@@ -17,10 +17,10 @@ public class Main {
     public static void main(String[] args) {
         try {		
     		/**0.Set Argument**/
-    		int period_for_moving_average  = 5;
+    		int period_for_moving_average  = 4;
     		int window_size = 12;//Temporal Data Base to SDB(Training)
     		int minsup = 20;
-    		double min_conf = 0.1;
+    		double min_conf = 0.49;
     		
 	        /**1.SAX**/
     	    System.out.println("##Step1.1: SAX(Traing)");
@@ -37,51 +37,53 @@ public class Main {
             String path = "petro_subset1.csv";//For Get Attribute 
             ArrayList<ArrayList<String>> records = readCSV(path);
             GetAttr g = new GetAttr();
-            HashMap<Integer, String> class_table = g.Move_Average(period_for_moving_average, records);    
+           // HashMap<Integer, String> class_table = g.Move_Average(period_for_moving_average, records);    
+            HashMap<Integer, String> class_table =  g.MACD(3, 4, 2, records);
+            
             
             /**3.Temporal Data Base to SDB(Training)**/
-            System.out.println("##Step3.1: Temporal Data Base to SDB(Training)");
+            //System.out.println("##Step3.1: Temporal Data Base to SDB(Training)");
             //For training
-            String path_of_file_training_after_SAX = "transformed_petro_subset1_training.csv";
-    		T2SDB t = new T2SDB();
-            t.translate_training(window_size, path_of_file_training_after_SAX,  class_table);
+            //String path_of_file_training_after_SAX = "transformed_petro_subset1_training.csv";
+    		//T2SDB t = new T2SDB();
+            //t.translate_training(window_size, path_of_file_training_after_SAX,  class_table);
             
-            System.out.println("##Step3.2: Temporal Data Base to SDB(Testing)");
+            //System.out.println("##Step3.2: Temporal Data Base to SDB(Testing)");
             //For testing
-            String path_of_testing_file_after_SAX = "transformed_petro_subset1_testing.csv";
-            t.translate_testing(window_size, path_of_testing_file_after_SAX);
+            //String path_of_testing_file_after_SAX = "transformed_petro_subset1_testing.csv";
+            //t.translate_testing(window_size, path_of_testing_file_after_SAX);
              
             
             /**4.Sequential Pattern Mining**/
-            System.out.println("##Step4: Sequential Pattern Mining(Training)");
+            //System.out.println("##Step4: Sequential Pattern Mining(Training)");
             //Load a sequence database
-            SequenceDatabase sequenceDatabase = new SequenceDatabase(); 
-            sequenceDatabase.loadFile("C:\\user\\workspace\\research\\SDB(Training).txt");
+            //SequenceDatabase sequenceDatabase = new SequenceDatabase(); 
+            //sequenceDatabase.loadFile("C:\\user\\workspace\\research\\SDB(Training).txt");
             //print the database to console
             //sequenceDatabase.print();
     		
-    		AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
+    		//AlgoPrefixSpan_with_Strings algo = new AlgoPrefixSpan_with_Strings(); 
     		//execute the algorithm
-    		algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
-    		algo.printStatistics(sequenceDatabase.size());
+    		//algo.runAlgorithm(sequenceDatabase, "C:\\user\\workspace\\research\\sequential_patterns.txt", minsup);    
+    		//algo.printStatistics(sequenceDatabase.size());
     		
     		
     		/**5.Rule Generation**/
-    		System.out.println("##Step5: Rule Generation");
-    		RuleEvaluation rule = new RuleEvaluation();
-    		rule.start("RuleEvaluation_config.txt", min_conf);
+    		//System.out.println("##Step5: Rule Generation");
+    		//RuleEvaluation rule = new RuleEvaluation();
+    		//rule.start("RuleEvaluation_config.txt", min_conf);
             
     		
     		/**6.Rule Mapping**/
-    		System.out.println("##Step6: Rule Mapping");
-    		RuleMapping mapping = new RuleMapping();
-    		HashMap<Integer, ArrayList<String>> result_of_predict_for_testing_data 
-    		= mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
+    		//System.out.println("##Step6: Rule Mapping");
+    		//RuleMapping mapping = new RuleMapping();
+    		//HashMap<Integer, ArrayList<String>> result_of_predict_for_testing_data 
+    		//= mapping.RuleMapping(readRules("rules.txt"), ReadSDB_for_testing("SDB(Testing).txt"));
     		
     		
 			
     		/**7.Evaluate Precision**/
-    		mapping.evaluate(class_table, result_of_predict_for_testing_data );
+    		//mapping.evaluate(class_table, result_of_predict_for_testing_data );
     		
     		 
         } catch (FileNotFoundException e) {
